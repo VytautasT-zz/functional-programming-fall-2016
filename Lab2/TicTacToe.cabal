@@ -1,0 +1,40 @@
+name:                TicTacToe
+version:             0.1.0.0
+build-type:          Simple
+-- extra-source-files:  ChangeLog.md
+cabal-version:       >=1.10
+
+library
+  hs-source-dirs:      src
+  exposed-modules:     TicTacToe.Helpers.Http
+                     , TicTacToe.Helpers.Args
+                     , TicTacToe.MExpr.Parser
+                     , TicTacToe.MExpr.Serializer
+                     , TicTacToe.Types
+                     , TicTacToe.Game
+  build-depends:       http-client
+                     , bytestring
+                     , lens 
+                     , wreq
+                     , containers
+                     , random
+                     , base >=4.9 && <4.10                   
+  default-language:    Haskell2010
+
+executable TicTacToe
+  hs-source-dirs:      app
+  main-is:             Main.hs   
+  build-depends:       base,
+                       TicTacToe
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N  
+  default-language:    Haskell2010
+
+test-suite TicTacToe-test
+  type: exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  build-depends:       base 
+                     , TicTacToe
+                     , hspec     
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N              
+  default-language:    Haskell2010
